@@ -42,12 +42,13 @@ public class DisplayScreen {
             e.printStackTrace();
         }
 
+        Color purple = new Color(118,88,152); //custom color (eva 01 purple)
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
         canvas.setFocusable(false);
-        canvas.setBackground(Color.black);
+        canvas.setBackground(purple); //changed background color to custom color
 
         frame.add(canvas);
         frame.pack();
