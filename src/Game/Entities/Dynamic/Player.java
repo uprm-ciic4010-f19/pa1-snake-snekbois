@@ -22,6 +22,7 @@ public class Player {
     public int yCoord;
 
     public int moveCounter;
+    public int score;
 
     public String direction;//is your first name one?
 
@@ -133,12 +134,13 @@ public class Player {
 
             }
         }
-
-
+        g.setColor(Color.WHITE);
+        g.drawString("Score: "+Integer.toString(score), handler.getWidth()/2, 10);
     }
 
     public void Eat(){
         lenght++;
+        score = (int) (score + Math.sqrt((2*score)+1)); // added scoring
         Tail tail= null;
         handler.getWorld().appleLocation[xCoord][yCoord]=false;
         handler.getWorld().appleOnBoard=false;
