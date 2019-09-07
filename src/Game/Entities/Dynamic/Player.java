@@ -14,7 +14,10 @@ public class Player {
     public int lenght;
     public boolean justAte;
     private Handler handler;
-
+    //Registers the speed of snake based on ticks per second
+    //The higher the number, the slower the snake
+    //The lower or closer number to 0 makes the snake go faster
+    private int moverate = 5;
     public int xCoord;
     public int yCoord;
 
@@ -35,7 +38,7 @@ public class Player {
 
     public void tick(){
         moveCounter++;
-        if(moveCounter>=5) {
+        if(moveCounter>=moverate) {
             checkCollisionAndMove();
             moveCounter=0;
         }
@@ -47,6 +50,20 @@ public class Player {
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
+        }
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) {
+			Eat();
+			//Triggers manually the tail and doens't spawn new apple
+			handler.getWorld().appleOnBoard=true;
+			//setJustAte(true);
+        }
+        //Button makes snake go slower 
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
+        	moverate++;
+        }
+        //Button makes snake go faster
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) {
+        	moverate--;
         }
 
     }

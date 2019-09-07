@@ -12,6 +12,7 @@ public class KeyManager implements KeyListener {
 
 	private boolean[] keys,justPressed,cantPress;
 	public boolean up=false, down=false, left=false, right=false;
+	public boolean tail=false;
 	public boolean pbutt=false;
 
 
@@ -41,6 +42,9 @@ public class KeyManager implements KeyListener {
 		down = keys[KeyEvent.VK_S];
 		left = keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_D];
+		//Edit 4 de septiembre 
+		//speedup = keys[KeyEvent.VK_EQUALS];
+		//speeddown = keys[KeyEvent.VK_MINUS];
 
 		pbutt = keys[KeyEvent.VK_ESCAPE];
 
