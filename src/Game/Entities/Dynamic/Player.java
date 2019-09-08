@@ -17,7 +17,7 @@ public class Player {
     //Registers the speed of snake based on ticks per second
     //The higher the number, the slower the snake
     //The lower or closer number to 0 makes the snake go faster
-    private int moverate = 5;
+    private int moverate = 10;
     public int xCoord;
     public int yCoord;
 
@@ -77,6 +77,8 @@ public class Player {
             case "Left":
                 if(xCoord==0){
                     kill();
+                    //Snake moves to the last position on the right (59) making it go through the other side of the screen
+                	xCoord=59;
                 }else{
                     xCoord--;
                 }
@@ -84,6 +86,8 @@ public class Player {
             case "Right":
                 if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
                     kill();
+                  //Snake moves to the last position on the left (0) making it go through the other side of the screen
+                    xCoord=0;
                 }else{
                     xCoord++;
                 }
@@ -91,6 +95,8 @@ public class Player {
             case "Up":
                 if(yCoord==0){
                     kill();
+                  //Snake moves to the last position on the downward (59) making it go through the other side of the screen
+                    yCoord=59;
                 }else{
                     yCoord--;
                 }
@@ -98,6 +104,8 @@ public class Player {
             case "Down":
                 if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
                     kill();
+                  //Snake moves to the last position on the upward (0) making it go through the other side of the screen
+                    yCoord=0;
                 }else{
                     yCoord++;
                 }
@@ -251,8 +259,8 @@ public class Player {
         lenght = 0;
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-
                 handler.getWorld().playerLocation[i][j]=false;
+            	//this.xCoord = xCoord + 60;
 
             }
         }

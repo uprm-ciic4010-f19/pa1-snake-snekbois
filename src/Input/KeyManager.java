@@ -42,9 +42,6 @@ public class KeyManager implements KeyListener {
 		down = keys[KeyEvent.VK_S];
 		left = keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_D];
-		//Edit 4 de septiembre 
-		//speedup = keys[KeyEvent.VK_EQUALS];
-		//speeddown = keys[KeyEvent.VK_MINUS];
 
 		pbutt = keys[KeyEvent.VK_ESCAPE];
 
