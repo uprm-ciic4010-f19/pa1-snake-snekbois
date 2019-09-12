@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public class Images {
 
-
+	
     public static BufferedImage[] butstart;
     public static BufferedImage title;
     public static BufferedImage Pause;
@@ -18,6 +18,7 @@ public class Images {
     public static BufferedImage[] BTitle;
     public static BufferedImage[] Options;
     public static ImageIcon icon;
+    public static BufferedImage gameOver;
 
     public Images() {
 
@@ -39,6 +40,7 @@ public class Images {
             butstart[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/NormBut.png"));//normbut
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
+            gameOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/IMG_9318.JPG"));
 
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));
 

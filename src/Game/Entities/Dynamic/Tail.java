@@ -11,7 +11,12 @@ public class Tail {
         this.x=x;
         this.y=y;
         handler.getWorld().playerLocation[x][y]=true;
-
+        
+    // Declare a boolean for "game over" and then call it on the for loop
+    //public boolean gameOver= false;
     }
+    public void gameOver() {
+    	
+    }	
 
 }

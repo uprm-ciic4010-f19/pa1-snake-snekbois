@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import Game.GameStates.State;
+
 /**
  * Created by AlexVR on 7/2/2018.
  */
@@ -25,6 +27,9 @@ public class Player {
     public int score;
 
     public String direction;//is your first name one?
+    public void directionRestriction(){
+    	
+    }
 
     public Player(Handler handler){
         this.handler = handler;
@@ -43,13 +48,14 @@ public class Player {
             checkCollisionAndMove();
             moveCounter=0;
         }
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
+        // direction != restricts the snake from going on the opposite direction of the pressed key
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP) && direction!="Down"){
             direction="Up";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN) && direction!="Up"){
             direction="Down";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT) && direction!="Right") {
             direction="Left";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT) && direction!="Left"){
             direction="Right";
         }
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) {
@@ -66,8 +72,22 @@ public class Player {
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) {
         	moverate--;
         }
+        if(!handler.getWorld().body.isEmpty())gameOver();
 
     }
+    //Iterates through the LinkedList verifying the players x and y don't intersects with any parts of the tail
+    public void gameOver() {
+    	int currentPosition=0;
+    	while(lenght-1 > currentPosition) {
+    		if(this.xCoord==handler.getWorld().body.get(currentPosition).x && this.yCoord==handler.getWorld().body.get(currentPosition).y) {
+    			State.setState(handler.getGame().gameOverState);
+    		}
+    		
+    		currentPosition++;
+    		
+    	}
+    }
+        
 
     public void checkCollisionAndMove(){
         handler.getWorld().playerLocation[xCoord][yCoord]=false;
