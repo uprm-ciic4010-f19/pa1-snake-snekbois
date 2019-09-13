@@ -43,7 +43,11 @@ public abstract class WorldBase {
 
         appleOnBoard = false;
 
-
+    
+    }
+    
+    public boolean check(int t) {
+    	return apple.isGood(t);
     }
     public void tick(){
 

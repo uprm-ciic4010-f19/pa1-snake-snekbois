@@ -19,4 +19,9 @@ public class Apple {
         this.xCoord=x;
         this.yCoord=y;
     }
+    public boolean isGood(int t) {
+    	if (t != 0) return true;
+    	else if (t == 0) return false;
+    	return true;
+    }
 }
