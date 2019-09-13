@@ -184,7 +184,7 @@ public class Player {
     }
 
     public void Eat(){
-        lenght++;
+        //lenght--;
         if (appleTimer != 0) {
         	moverate += 1; //my student id ends in 0, 0+1=1, it's painfully slow this way, would be slower with my partner's id
         	score = (int) (score + Math.sqrt((2*score)+1)); // added scoring 
@@ -307,7 +307,6 @@ public class Player {
         	}
         	else {
         		lenght = 1;
-        		State.setState(handler.getGame().gameOverState); //When snake doesn't have tail and eats bad apple, game over
         	}
         	
         }
