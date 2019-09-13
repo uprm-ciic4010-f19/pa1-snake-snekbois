@@ -53,29 +53,32 @@ public class Player {
                         
         }
         // direction != restricts the snake from going on the opposite direction of the pressed key
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP) && direction!="Down"){
+        if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)||handler.getKeyManager().up) && direction!="Down"){
             direction="Up";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN) && direction!="Up"){
+        }if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)||handler.getKeyManager().down) && direction!="Up"){
             direction="Down";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT) && direction!="Right") {
+        }if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)||handler.getKeyManager().left) && direction!="Right") {
             direction="Left";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT) && direction!="Left"){
+        }if((handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)||handler.getKeyManager().right) && direction!="Left"){
             direction="Right";
         }
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) {
+        if(handler.getKeyManager().addTail) {
 			Eat();
 			//Triggers manually the tail and doens't spawn new apple
 			handler.getWorld().appleOnBoard=true;
 			//setJustAte(true);
         }
         //Button makes snake go slower 
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
+        if(handler.getKeyManager().slow) {
         	moverate++;
         }
         //Button makes snake go faster
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) {
+        if(handler.getKeyManager().fast) {
         	moverate--;
         }
+        if (handler.getKeyManager().pbutt) {
+        	State.setState(handler.getGame().pauseState); //sets pause state with escape key
+		}
         if(!handler.getWorld().body.isEmpty())gameOver();
 
     }
@@ -164,7 +167,7 @@ public class Player {
                             handler.getWorld().GridPixelsize);                    		
                 }
                 if (handler.getWorld().appleLocation[i][j]) {
-					if (appleTimer != 0) g.setColor(green);
+					if (appleTimer != 0) g.setColor(Color.red);
 					else g.setColor(brown);
 					g.fillRect((i*handler.getWorld().GridPixelsize), 
                             (j*handler.getWorld().GridPixelsize),
@@ -183,6 +186,7 @@ public class Player {
     public void Eat(){
         //lenght++;
         if (appleTimer != 0) {
+        	moverate += 1; //my student id ends in 0, 0+1=1, it's painfully slow this way, would be slower with my partner's id
         	score = (int) (score + Math.sqrt((2*score)+1)); // added scoring 
         	lenght++;
         	handler.getWorld().appleLocation[xCoord][yCoord]=false;
@@ -298,7 +302,9 @@ public class Player {
         		lenght--;
         		handler.getWorld().playerLocation[handler.getWorld().body.getLast().x]
         				[handler.getWorld().body.getLast().y]=true;
+        		kill();
             	handler.getWorld().body.removeLast(); // removes tail piece
+            	
         	}
         	else {
         		lenght = 1;
